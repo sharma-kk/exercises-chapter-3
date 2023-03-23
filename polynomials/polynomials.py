@@ -68,3 +68,21 @@ class Polynomial:
     def __rsub__(self, other):
         coefs = tuple(-a for a in self.coefficients)
         return other + Polynomial(coefs)
+    
+
+    def __mul__(self, other):
+
+        mul = []
+        if isinstance(other, Number):
+            for i in self.coefficients:
+                mul.append(other*i)
+            return Polynomial(tuple(mul))
+        
+        if isinstance(other, Polynomial):
+            Pol = Polynomial((0,))
+            for i, j in enumerate(other.coefficients):
+                Pol+= Polynomial(i*(0,) + self.coefficients)*j
+            return Pol
+
+    def __rmul__(self, other):
+        return self*other    
