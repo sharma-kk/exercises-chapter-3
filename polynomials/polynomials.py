@@ -106,3 +106,19 @@ class Polynomial:
             return fval
         else:
             return NotImplemented
+        
+    def dx(self):
+
+        if self.degree() == 0:
+            return Polynomial((0,))
+        else:
+             deriv = []
+             ncoef = self.coefficients[1:]
+
+             for i, j in enumerate(ncoef, start=1):
+                 deriv.append(i*j)
+             return Polynomial(tuple(deriv))
+
+def derivative(poly):
+
+    return poly.dx()
