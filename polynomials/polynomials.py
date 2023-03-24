@@ -97,3 +97,12 @@ class Polynomial:
             return expo
         else: 
             return NotImplemented
+
+    def __call__(self, other):
+        fval = 0
+        if isinstance(other, Number):
+            for i, j in enumerate(self.coefficients):
+                fval += j*other**i
+            return fval
+        else:
+            return NotImplemented
