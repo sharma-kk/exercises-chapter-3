@@ -1,5 +1,5 @@
 from numbers import Number
-
+from numbers import Integral
 
 class Polynomial:
 
@@ -86,3 +86,14 @@ class Polynomial:
 
     def __rmul__(self, other):
         return self*other    
+    
+    def __pow__(self, other):
+         
+        expo = Polynomial((1,))
+
+        if isinstance(other, Integral):
+            for i in range(other):
+                expo *= self
+            return expo
+        else: 
+            return NotImplemented
