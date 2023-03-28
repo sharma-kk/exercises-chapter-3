@@ -68,34 +68,33 @@ class Polynomial:
     def __rsub__(self, other):
         coefs = tuple(-a for a in self.coefficients)
         return other + Polynomial(coefs)
-    
 
     def __mul__(self, other):
-        
+
         mul = []
         if isinstance(other, Number):
             for i in self.coefficients:
                 mul.append(other*i)
             return Polynomial(tuple(mul))
-        
+
         if isinstance(other, Polynomial):
             Pol = Polynomial((0,))
             for i, j in enumerate(other.coefficients):
-                Pol+= Polynomial(i*(0,) + self.coefficients)*j
-            return Pol 
+                Pol += Polynomial(i*(0,) + self.coefficients)*j
+            return Pol
 
     def __rmul__(self, other):
-        return self*other    
-    
+        return self*other
+
     def __pow__(self, other):
-         
+
         expo = Polynomial((1,))
 
         if isinstance(other, Integral):
             for i in range(other):
                 expo *= self
             return expo
-        else: 
+        else:
             return NotImplemented
 
     def __call__(self, other):
@@ -106,19 +105,20 @@ class Polynomial:
             return fval
         else:
             return NotImplemented
-        
+
     def dx(self):
 
         if self.degree() == 0:
             return Polynomial((0,))
         else:
-             deriv = []
-             ncoef = self.coefficients[1:]
+            deriv = []
+            ncoef = self.coefficients[1:]
 
-             for i, j in enumerate(ncoef, start=1):
-                 deriv.append(i*j)
-             return Polynomial(tuple(deriv))
+            for i, j in enumerate(ncoef, start=1):
+                deriv.append(i*j)
+            return Polynomial(tuple(deriv))
+
 
 def derivative(poly):
-    
+
     return poly.dx()
