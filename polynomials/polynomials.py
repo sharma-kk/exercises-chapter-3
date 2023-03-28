@@ -1,6 +1,7 @@
 from numbers import Number
 from numbers import Integral
 
+
 class Polynomial:
 
     def __init__(self, coefs):
@@ -55,7 +56,7 @@ class Polynomial:
 
         if isinstance(other, Polynomial):
             coefs = tuple(-a for a in other.coefficients)
-            return self +  Polynomial(coefs)
+            return self + Polynomial(coefs)
 
         elif isinstance(other, Number):
             return Polynomial((self.coefficients[0] - other,)
@@ -63,7 +64,6 @@ class Polynomial:
 
         else:
             return NotImplemented
-            
 
     def __rsub__(self, other):
         coefs = tuple(-a for a in self.coefficients)
@@ -71,7 +71,7 @@ class Polynomial:
     
 
     def __mul__(self, other):
-
+        
         mul = []
         if isinstance(other, Number):
             for i in self.coefficients:
@@ -82,7 +82,7 @@ class Polynomial:
             Pol = Polynomial((0,))
             for i, j in enumerate(other.coefficients):
                 Pol+= Polynomial(i*(0,) + self.coefficients)*j
-            return Pol
+            return Pol 
 
     def __rmul__(self, other):
         return self*other    
@@ -120,5 +120,5 @@ class Polynomial:
              return Polynomial(tuple(deriv))
 
 def derivative(poly):
-
+    
     return poly.dx()
