@@ -3,6 +3,7 @@ from numbers import Integral
 
 
 class Polynomial:
+    """creates a polynomial when the coeffients are supplied as a tuple"""
 
     def __init__(self, coefs):
         self.coefficients = coefs
